@@ -6,7 +6,10 @@
         "phpdocumentor/phpdocumentor": "2.*"
     },
     "license": "MIT",
-    "require": {},
+    "require": {
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
     "autoload": {
         "psr-4": {
             "Ticketmatic\\": "lib/"
