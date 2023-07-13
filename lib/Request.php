@@ -28,8 +28,6 @@
 
 namespace Ticketmatic;
 
-use \Ticketmatic\Model\QueueStatus;
-
 /**
  * Ticketmatic API REST request
  */
@@ -77,6 +75,13 @@ class Request {
     private $body;
 
     /**
+     * Request body content type (ex: json, xml, etc.)
+     *
+     * @var string
+     */
+    private $bodycontenttype;
+
+    /**
      * Response headers
      *
      * @var array
@@ -90,7 +95,7 @@ class Request {
      * @param string $method
      * @param string $url
      */
-    public function __construct(Client $client, $method, $url) {
+    public function __construct(Client $client, string $method, string $url) {
         $this->client = $client;
         $this->method = $method;
         $this->url = $url;
@@ -284,7 +289,8 @@ class Request {
         }
     }
 
-    public function handleHeader($curl, $header) {
+    public function handleHeader($curl, $header)
+    {
         if (strpos($header, ": ")) {
             list($key, $val) = explode(": ", trim($header), 2);
             $this->responseHeaders[strtolower($key)] = $val;
